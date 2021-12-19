@@ -2,22 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:repose_application/src/models/fields_model.dart';
 
 import 'package:repose_application/src/services/sitiosturiticos_services.dart';
-import 'package:repose_application/src/widgets/sitios_card.dart';
+import 'package:repose_application/src/widgets/info_card.dart';
 
-class SitiosTuristicosWidget extends StatefulWidget {
-   SitiosTuristicosWidget({Key? key}) : super(key: key);
+
+class SitioInfoWidget extends StatefulWidget {
+  SitioInfoWidget({Key? key}) : super(key: key);
 
   @override
-  _SitiosTuristicosWidgetState createState() => _SitiosTuristicosWidgetState();
+  _SitioInfoWidgetState createState() => _SitioInfoWidgetState();
 }
 
-class _SitiosTuristicosWidgetState extends State<SitiosTuristicosWidget> {
-
-  final SitiosTuristicosAPP _sitiosserviceapp = SitiosTuristicosAPP();
-  List<FieldsProto>? _listofsitios;
-
-
-
+class _SitioInfoWidgetState extends State<SitioInfoWidget> {
+  final SitiosTuristicosAPP _sitiosinfoserviceapp = SitiosTuristicosAPP();
+  List<FieldsProto>? _listofsitiosinfo;
 
   @override
   void initState() {
@@ -26,11 +23,11 @@ class _SitiosTuristicosWidgetState extends State<SitiosTuristicosWidget> {
   }
   @override
   Widget build(BuildContext context) {
-    return _listofsitios == null
+    return _listofsitiosinfo == null
         ? const Center(
             child: SizedBox(
                 height: 50.0, width: 50.0, child: CircularProgressIndicator()))
-        : _listofsitios!.isEmpty
+        : _listofsitiosinfo!.isEmpty
             ? const Center(
                 child: SizedBox(
                     child: Text("Sin Datos")))
@@ -38,11 +35,11 @@ class _SitiosTuristicosWidgetState extends State<SitiosTuristicosWidget> {
                 margin: const EdgeInsets.symmetric(vertical: 25.0, horizontal: 14.0),
                 
                     child: ListView(
-                  children:  _listofsitios!.map((e) => SitiosCard(model: e)).toList()));
+                  children:  _listofsitiosinfo!.map((e) => InfoCard(model: e)).toList()));
   }
 
   _downloadrutas() async {
-    _listofsitios = await _sitiosserviceapp.getSitios();
+    _listofsitiosinfo = await _sitiosinfoserviceapp.getSitios();
     setState(() {});
   }
 }
