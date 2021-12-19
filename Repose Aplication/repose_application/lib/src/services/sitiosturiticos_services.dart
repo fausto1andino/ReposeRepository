@@ -6,7 +6,7 @@ import 'dart:convert';
 class SitiosTuristicosAPP {
   SitiosTuristicosAPP();
 
-  final String  _rootUrl = 'https://repose-backend.web.app/api/sitiosturisticos';
+  final String  _rootUrl = 'https://reposeturismapp.web.app/api/sitios';
 
   Future<List<FieldsProto>> getSitios() async {
   List<FieldsProto> resultSitios = [];
