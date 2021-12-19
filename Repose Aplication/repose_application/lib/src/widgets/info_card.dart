@@ -9,25 +9,20 @@ class InfoCard extends StatelessWidget {
     final url = model.fieldsProto?.urlImagenSitio!.stringValue;
     return Card(
       elevation: 12.0,
-      
-        child: ListTile(
-          tileColor: Color.alphaBlend(Colors.amber.shade50, Colors.lime),
-          title: Text(model.fieldsProto!.nombreSitio!.stringValue.toString(),
-              style: Theme.of(context).textTheme.headline6),
-          subtitle: Container(
-            decoration: const BoxDecoration(color: Colors.white),
-            child: Text(
-                "Mas Informacion : " +
-                    model.fieldsProto!.descripcionSitio!.stringValue.toString(),
-                style: Theme.of(context).textTheme.subtitle2),
-          ),
-          trailing: Text(
-              "Costo: " +
-                  model.fieldsProto!.costoSitio!.integerValue.toString() +
-                  " \$",
-              style: Theme.of(context).textTheme.headline6),
-        ),
-     
+      child: ListTile(
+        tileColor: Color.alphaBlend(Colors.amber.shade50, Colors.lime),
+        title: Text(model.fieldsProto!.nombreSitio!.stringValue.toString(),
+            style: Theme.of(context).textTheme.headline6),
+        subtitle: Text(
+              model.fieldsProto!.descripcionSitio!.stringValue.toString(),
+              style: Theme.of(context).textTheme.subtitle2),
+        
+        trailing: Text(
+            "Costo: " +
+                model.fieldsProto!.costoSitio!.integerValue.toString() +
+                " \$",
+            style: Theme.of(context).textTheme.headline6),
+      ),
     );
   }
 }
