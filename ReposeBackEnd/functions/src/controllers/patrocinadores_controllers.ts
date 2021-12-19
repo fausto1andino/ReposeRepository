@@ -4,7 +4,7 @@ import {Request, Response} from "express";
 
 export async function list(req: Request, res:Response){
     try {
-        let snapshot = await db.collection("SitiosDeInterezEcuador").get();
+        let snapshot = await db.collection("sitios").get();
         return res.status(200).json(snapshot.docs);
     } catch (err) {
         return handleError(res, err);

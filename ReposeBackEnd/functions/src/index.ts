@@ -3,7 +3,7 @@ import * as admin from "firebase-admin";
 import * as express from "express";
 import * as bodyPaser from "body-parser";
 import * as cors from "cors";
-import { routesSitioT } from "./router";
+import { routesPatrion } from "./router";
 
 admin.initializeApp(functions.config().firebase);
 const db = admin.firestore();
@@ -16,7 +16,8 @@ server.use(cors({origin: true}));
 server.use(bodyPaser.json());
 server.use(bodyPaser.urlencoded({extended: false}));
 
-routesSitioT(server);
+
+routesPatrion(server);
 
 export {db};
 export const api = functions.https.onRequest(server);
