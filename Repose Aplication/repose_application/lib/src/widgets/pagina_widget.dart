@@ -9,7 +9,7 @@ const PaginaPrincipalWidget({Key? key}) : super(key: key);
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Icon(Icons.first_page, size: 35.0),
+        const Icon(Icons.home_filled, size: 35.0),
         Text("Pagina Principal", style: Theme.of(context).textTheme.headline2)
       ],
     ));
