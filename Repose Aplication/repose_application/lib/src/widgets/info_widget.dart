@@ -40,6 +40,9 @@ class _SitioInfoWidgetState extends State<SitioInfoWidget> {
 
   _downloadrutas() async {
     _listofsitiosinfo = await _sitiosinfoserviceapp.getSitios();
-    setState(() {});
+    if(mounted){
+      setState(() {});
+    }
+    
   }
 }

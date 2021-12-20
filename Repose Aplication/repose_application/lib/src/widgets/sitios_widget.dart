@@ -43,6 +43,8 @@ class _SitiosTuristicosWidgetState extends State<SitiosTuristicosWidget> {
 
   _downloadrutas() async {
     _listofsitios = await _sitiosserviceapp.getSitios();
-    setState(() {});
+    if(mounted){
+      setState(() {});
+    }
   }
 }
