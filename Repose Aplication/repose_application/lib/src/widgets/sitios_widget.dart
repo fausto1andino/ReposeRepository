@@ -5,7 +5,7 @@ import 'package:repose_application/src/services/sitiosturiticos_services.dart';
 import 'package:repose_application/src/widgets/sitios_card.dart';
 
 class SitiosTuristicosWidget extends StatefulWidget {
-   SitiosTuristicosWidget({Key? key}) : super(key: key);
+   const SitiosTuristicosWidget({Key? key}) : super(key: key);
 
   @override
   _SitiosTuristicosWidgetState createState() => _SitiosTuristicosWidgetState();

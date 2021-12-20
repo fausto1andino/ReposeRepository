@@ -6,7 +6,7 @@ import 'package:repose_application/src/widgets/info_card.dart';
 
 
 class SitioInfoWidget extends StatefulWidget {
-  SitioInfoWidget({Key? key}) : super(key: key);
+  const SitioInfoWidget({Key? key}) : super(key: key);
 
   @override
   _SitioInfoWidgetState createState() => _SitioInfoWidgetState();

@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
           
           appBar: AppBar(centerTitle: true, title: const Text("Repose"), ),
-          body:  HomePage()),
+          body:  const HomePage()),
           
     );
   }
