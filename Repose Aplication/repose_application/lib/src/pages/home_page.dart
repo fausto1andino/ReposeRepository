@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
     final mainProvider = Provider.of<MainProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(centerTitle: true, title: Text(_options[_selectedIndex]), leading: SizedBox.square(
-        dimension: 60.0,
+        dimension: 25.0,
               child: Switch(
                   value: mainProvider.mode,
                   onChanged: (bool value) async {

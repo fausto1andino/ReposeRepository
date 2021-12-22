@@ -9,7 +9,6 @@ class InfoCard extends StatelessWidget {
     return Card(
       elevation: 12.0,
       child: ListTile(
-        tileColor: Color.alphaBlend(Colors.amber.shade50, Colors.lime),
         title: Text(model.fieldsProto!.nombreSitio!.stringValue.toString(),
             style: Theme.of(context).textTheme.headline6),
         subtitle: Text(

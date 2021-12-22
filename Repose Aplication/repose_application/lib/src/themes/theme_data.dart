@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   static const Color colorMediumPriority = Colors.yellow;
-  static final Color colorHighPriority = Colors.red;
+  static const Color colorHighPriority = Colors.red;
   static final Color colorLowPriority = Colors.green.shade400;
 
   static final TextTheme textTheme = TextTheme(
@@ -19,16 +19,13 @@ class AppTheme {
     caption: _caption,
   );
 
-  static const TextStyle _headLine1 =
-      TextStyle(fontFamily: 'Nexa', fontWeight: FontWeight.bold);
-
+  static const TextStyle _headLine1 = TextStyle(fontFamily: 'VujahdayScript', fontWeight: FontWeight.bold);
   static final TextStyle _headLine2 = _headLine1.copyWith();
   static final TextStyle _headLine3 = _headLine2.copyWith();
   static final TextStyle _headLine4 = _headLine3.copyWith();
   static final TextStyle _headLine5 = _headLine4.copyWith();
-  static final TextStyle _headLine6 =
-      _headLine5.copyWith(fontFamily: 'Akrobat');
-  static final TextStyle _subTitle1 = _headLine6.copyWith();
+  static final TextStyle _headLine6 = _headLine5.copyWith(fontFamily: 'VujahdayScript');
+  static final TextStyle _subTitle1 = _headLine6.copyWith(fontFamily: 'LuxuriousRoman', fontWeight: FontWeight.bold);
   static final TextStyle _subTitle2 = _subTitle1.copyWith();
   static final TextStyle _bodyText1 = _subTitle2.copyWith();
   static final TextStyle _bodyText2 = _bodyText1.copyWith();

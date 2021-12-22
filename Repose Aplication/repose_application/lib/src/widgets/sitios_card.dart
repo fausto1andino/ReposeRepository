@@ -1,22 +1,26 @@
+
 import 'package:flutter/material.dart';
 import 'package:repose_application/src/models/fields_model.dart';
 
 class SitiosCard extends StatelessWidget {
+  
   const SitiosCard({Key? key, required this.model}) : super(key: key);
   final FieldsProto model;
+  
   @override
+    
   Widget build(BuildContext context) {
     final url = model.fieldsProto?.urlImagenSitio!.stringValue;
     return SizedBox(
-      height: 500,
+      height: 600,
+      width: 300,
       child: Card(
-        elevation: 50.0,
+        elevation: 20.0,
         child: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: NetworkImage(url.toString()), fit: BoxFit.cover)),
           child: ListTile(
-              tileColor: Color.alphaBlend(Colors.amber.shade50, Colors.lime),
               title: Text(
                   model.fieldsProto!.nombreSitio!.stringValue.toString(),
                   style: Theme.of(context)

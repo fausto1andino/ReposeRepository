@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
                     home: const HomePage()));
           }
           return const SizedBox.square(
-              dimension: 100.0, child: CircularProgressIndicator());
+              dimension: 25.0, child: CircularProgressIndicator());
         });
   }
 }
