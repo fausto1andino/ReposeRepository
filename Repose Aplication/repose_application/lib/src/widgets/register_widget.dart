@@ -23,12 +23,10 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
   String? urlImagen;
   final email_usr = TextEditingController();
   final password_usr = TextEditingController();
-
   final nombreusr = TextEditingController();
   final Edad = TextEditingController();
   final direccion = TextEditingController();
   final urlImagendoc = TextEditingController();
-
   final FotosService _fotosService = FotosService();
  
   final List<GlobalKey<FormState>> _listKeys = [

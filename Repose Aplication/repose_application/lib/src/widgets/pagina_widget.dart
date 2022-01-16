@@ -30,7 +30,12 @@ class PaginaPrincipalWidget extends StatelessWidget {
                   ),
                 ),
                 MaterialButton(
-                  child: const Text("Lista de Usuarios"),
+                 
+                  child:  Text("Lista de Usuarios",
+                    style: Theme.of(context)
+                      .textTheme
+                      .headline6!
+                      .copyWith(color: Colors.white)),
                   onPressed: () {
                     Navigator.push(
                         context,
@@ -38,7 +43,7 @@ class PaginaPrincipalWidget extends StatelessWidget {
                             builder: (context) =>
                                 ListUsers(currentUser: creedenciales)));
                   },
-                  color: Colors.blue,
+                  color: Colors.orange[700],
                 )
               ],
             ),

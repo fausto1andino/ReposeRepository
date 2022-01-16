@@ -31,18 +31,18 @@ class _ListUsersState extends State<ListUsers> {
                 return const Center(child: Text('Recargando'));
               }
               return Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Container(
                   padding:
                   const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                   child: Column(
                 children: snapshot.data!.docs.map((creedenciales) {
                   return Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
+                   
                     child: Container(
                       decoration: BoxDecoration(
+                       shape: BoxShape.circle,
+                      border: Border.all(),
                           image: DecorationImage(
                               image: NetworkImage(
                                   creedenciales['urlImagen_doc'].toString()),
