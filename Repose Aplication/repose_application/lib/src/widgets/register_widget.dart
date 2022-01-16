@@ -174,7 +174,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
                 TextFormField(
               controller: nombreusr,
               decoration: InputDecoration(
-                  labelText: "Cedula o Pasaporte", prefixIcon: Icon(Icons.person_add)),
+                  labelText: "Nombre del Usuario", prefixIcon: Icon(Icons.person_add)),
               validator: nameValidation,
               ),
               TextFormField(
