@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:repose_application/src/pages/home_page.dart';
@@ -6,12 +7,14 @@ import 'package:repose_application/src/themes/theme_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp();
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => MainProvider()),
       ],
-      child: const MyApp(),
+      child:  MyApp(),
     ),
   );
 }
@@ -27,7 +30,7 @@ class MyApp extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ScreenUtilInit(
-                designSize: const Size(360, 690),
+                designSize: const Size(300, 600),
                 builder: () => MaterialApp(
                     debugShowCheckedModeBanner: false,
                     title: 'Flutter Demo',

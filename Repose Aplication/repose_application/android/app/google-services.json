@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "892026178592",
+    "project_id": "reposeturismapp",
+    "storage_bucket": "reposeturismapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:892026178592:android:554c91e878aa8300b14045",
+        "android_client_info": {
+          "package_name": "com.example.repose_application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "892026178592-1m8gvcckj65q66bkrkqnp4t4spqmg2tl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAA4aBX-fmE6jKMkc1azx62IKNCYltD4j8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "892026178592-1m8gvcckj65q66bkrkqnp4t4spqmg2tl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

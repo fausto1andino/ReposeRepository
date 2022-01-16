@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:repose_application/src/models/fields_model.dart';
 
+
 class InfoCard extends StatelessWidget {
   const InfoCard({Key? key, required this.model}) : super(key: key);
   final FieldsProto model;

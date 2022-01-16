@@ -1,8 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:repose_application/src/widgets/info_widget.dart';
 import 'package:repose_application/src/widgets/pagina_widget.dart';
+import 'package:repose_application/src/widgets/register_widget.dart';
 import 'package:repose_application/src/widgets/sitios_widget.dart';
-
+import 'package:repose_application/src/widgets/user_widget.dart';
+ CollectionReference creedenciales =
+        FirebaseFirestore.instance.collection('creedenciales');  
 class MenuItem {
   String label;
   IconData icon;
@@ -13,11 +17,11 @@ class MenuItem {
 List<MenuItem> menuOption = [
   MenuItem("Pagina Principal", Icons.home_work),
   MenuItem("Sitios", Icons.travel_explore),
-  MenuItem("Mas Informacion", Icons.info_outline_rounded),
+  MenuItem("Registro", Icons.reviews),
 ];
 
 List<Widget> contentWidgets = [
-  const PaginaPrincipalWidget(),
+ const PaginaPrincipalWidget(),
   const SitiosTuristicosWidget(),
-  const SitioInfoWidget()
+   RegistroUsuario()
 ];
