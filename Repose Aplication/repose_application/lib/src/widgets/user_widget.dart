@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
 
 class ListUsers extends StatefulWidget {
@@ -13,7 +13,7 @@ class ListUsers extends StatefulWidget {
 class _ListUsersState extends State<ListUsers> {
   @override
   void initState() {
-    // TODO: implement initState
+    WidgetsFlutterBinding.ensureInitialized();
     super.initState();
   }
 
@@ -30,37 +30,39 @@ class _ListUsersState extends State<ListUsers> {
               if (!snapshot.hasData) {
                 return const Center(child: Text('Recargando'));
               }
-              return Flexible(
-                  child: Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-                child: Column(
-                  children: snapshot.data!.docs.map((creedenciales) {
-                    return Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: NetworkImage(
-                                    creedenciales['urlImagen_doc'].toString()),
-                                fit: BoxFit.contain)),
-                        child: ListTile(
-                            title: Text(
-                          creedenciales['Edad'],
-                          style: const TextStyle(
-                            fontSize: 22.0,
-                          ),
-                        ),
-                        subtitle: Text(creedenciales['direccion']),
-                        trailing: Text(creedenciales['nombreusr']),
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  padding:
+                  const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                  child: Column(
+                children: snapshot.data!.docs.map((creedenciales) {
+                  return Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(
+                                  creedenciales['urlImagen_doc'].toString()),
+                              fit: BoxFit.contain)),
+                      child: ListTile(
+                          title: Text(
+                        creedenciales['Edad'],
+                        style: const TextStyle(
+                          fontSize: 22.0,
                         ),
                       ),
-                    );
-                  }).toList(),
+                      subtitle: Text(creedenciales['direccion']),
+                      trailing: Text(creedenciales['nombreusr']),
+                      ),
+                    ),
+                  );
+                }).toList(),
+                  ),
                 ),
-              ));
+              );
             },
           ),
         ));

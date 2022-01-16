@@ -78,7 +78,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
           currentStep: currentStep,
           onStepContinue: () async {
             final isLastStep = currentStep == obtnerPasos().length - 1;
-             print("El valor de step es: "+currentStep.toString());
+            
             if (_listKeys[currentStep].currentState!.validate()) {
               if (isLastStep) {
                 await _sendToServer();
