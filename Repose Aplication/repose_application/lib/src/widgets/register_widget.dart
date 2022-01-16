@@ -72,16 +72,17 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       
         body: Stepper(
           type: StepperType.horizontal,
           steps: obtnerPasos(),
           currentStep: currentStep,
           onStepContinue: () async {
             final isLastStep = currentStep == obtnerPasos().length - 1;
+             print("El valor de step es: "+currentStep.toString());
             if (_listKeys[currentStep].currentState!.validate()) {
               if (isLastStep) {
                 await _sendToServer();
+               
                 showDialog(
                     context: context,
                     builder: (BuildContext context) {
@@ -121,6 +122,17 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
               }
             }
           },
+          onStepCancel: currentStep == 0
+              ? () {
+                 Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => HomePage()),
+                                );
+                }
+              : () {
+                  setState(() => currentStep -= 1);
+                },
         ));
   }
 

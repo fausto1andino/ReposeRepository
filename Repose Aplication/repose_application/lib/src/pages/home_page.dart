@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   final List<String> _options = [
     " Pagina Inicial ",
     " Sitios ",
-    " Mas Informacion de los Sitios "
+    " Registro "
   ];
 
   @override
