@@ -38,9 +38,9 @@ class AppTheme {
         primaryColorLight: const Color(0xFF69b6ff),
         tabBarTheme: TabBarTheme(
             unselectedLabelColor: Colors.grey,
-            labelColor: ligthMode ? const Color(0xFFCE93D8) : Colors.white),
+            labelColor: ligthMode ? const Color(0xFFE76610) : Colors.white),
         colorScheme: ColorScheme(
-            primary: const Color(0xFFCE93D8),
+            primary: const Color(0xFFE76610),
             primaryVariant: const Color(0xFF1d87e5),
             secondary: const Color(0XFFFFFFFF),
             secondaryVariant: const Color(0XFFFFFFFF),

@@ -16,9 +16,6 @@ class _SitiosTuristicosWidgetState extends State<SitiosTuristicosWidget> {
   final SitiosTuristicosAPP _sitiosserviceapp = SitiosTuristicosAPP();
   List<FieldsProto>? _listofsitios;
 
-
-
-
   @override
   void initState() {
     super.initState();

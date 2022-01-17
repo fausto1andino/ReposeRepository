@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ScreenUtilInit(
-                designSize: const Size(300, 600),
+                designSize: ScreenUtil.defaultSize,
                 builder: () => MaterialApp(
                     debugShowCheckedModeBanner: false,
                     title: 'Flutter Demo',

@@ -40,17 +40,21 @@ class _HomePageState extends State<HomePage> {
                   }
       ))),
       body: contentWidgets[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: (int index) {
-          _selectedIndex = index;
-          setState(() {});
-        },
-        type: BottomNavigationBarType.fixed,
-        items: menuOption
-            .map((e) =>
-                BottomNavigationBarItem(icon: Icon(e.icon), label: e.label))
-            .toList(),
-        currentIndex: _selectedIndex,
+      bottomNavigationBar: LayoutBuilder(
+        builder: (context, constraints) {
+          return BottomNavigationBar(
+            onTap: (int index) {
+              _selectedIndex = index;
+              setState(() {});
+            },
+            type: BottomNavigationBarType.fixed,
+            items: menuOption
+                .map((e) =>
+                    BottomNavigationBarItem(icon: Icon(e.icon), label: e.label))
+                .toList(),
+            currentIndex: _selectedIndex,
+          );
+        }
       ),
     );
   }

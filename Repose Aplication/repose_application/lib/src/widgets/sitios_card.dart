@@ -9,7 +9,7 @@ class SitiosCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final url = model.fieldsProto?.urlImagenSitio!.stringValue;
     return SizedBox(
-      height: 600,
+      height: 500,
       width: 300,
       child: Card(
         elevation: 20.0,
