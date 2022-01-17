@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:repose_application/src/pages/home_page.dart';
 import 'package:repose_application/src/providers/main_provider.dart';
+import 'package:repose_application/src/providers/sugerencias_provider.dart';
 import 'package:repose_application/src/themes/theme_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,6 +14,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => MainProvider()),
+        ChangeNotifierProvider(create: (_) => SugerenciaProvider())
       ],
       child:  const MyApp(),
     ),

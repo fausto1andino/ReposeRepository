@@ -41,17 +41,18 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
             content: Form(
                 key: _listKeys[0],
                 autovalidateMode: AutovalidateMode.always,
-                child: user(email_usr,password_usr))),
+                child: user(email_usr, password_usr))),
         Step(
             isActive: currentStep >= 1,
             title: const Icon(Icons.add_a_photo),
             content: Form(
                 key: _listKeys[1],
                 autovalidateMode: AutovalidateMode.always,
-                child: imageuserdatos(Edad,direccion,nombreusr,_selectImage))),
+                child:
+                    imageuserdatos(Edad, direccion, nombreusr, _selectImage))),
       ];
 
- Future _selectImage(ImageSource source) async {
+  Future _selectImage(ImageSource source) async {
     try {
       final imageCamera = await ImagePicker().pickImage(source: source);
       if (imageCamera == null) return;
@@ -63,21 +64,23 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
     } on Exception {
       // print('Fallo al escoger una imagen: $e');
     }
-    
   }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       child: Scaffold(
           body: Stepper(
-          controlsBuilder: (BuildContext context, ControlsDetails details){
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
+        controlsBuilder: (BuildContext context, ControlsDetails details) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextButton(
-                   style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.black87)),
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.black87)),
                   onPressed: details.onStepCancel,
                   child: const Text('Regresar'),
                 ),
@@ -85,14 +88,16 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextButton(
-                  style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.black87)),
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.black87)),
                   onPressed: details.onStepContinue,
                   child: const Text('Siguiente'),
                 ),
               ),
             ],
-            );
-          },
+          );
+        },
         physics: ScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         elevation: 10,
         type: StepperType.horizontal,
@@ -103,7 +108,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
           if (_listKeys[currentStep].currentState!.validate()) {
             if (isLastStep) {
               await _sendToServer();
-
               showDialog(
                   context: context,
                   builder: (BuildContext context) {
@@ -156,7 +160,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
       )),
     );
   }
-  
+
   Future<void> _sendToServer() async {
     FirebaseFirestore.instance.runTransaction((Transaction transaction) async {
       CollectionReference reference =
@@ -174,5 +178,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
       "urlImagen_doc": urlImagen
     });
   }
+
 
 }

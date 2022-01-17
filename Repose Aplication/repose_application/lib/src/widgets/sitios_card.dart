@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:repose_application/src/models/fields_model.dart';
+import 'package:repose_application/src/widgets/sugerencia_list_widget.dart';
 
 class SitiosCard extends StatelessWidget {
   const SitiosCard({Key? key, required this.model}) : super(key: key);
@@ -21,7 +22,8 @@ class SitiosCard extends StatelessWidget {
               onTap: () {
                 showDialog(
                     context: context,
-                    builder: (_) => AlertDialog(
+                    builder: (BuildContext context) {
+                      return AlertDialog(
                           title: Text(
                               model.fieldsProto!.nombreSitio!.stringValue
                                   .toString(),
@@ -30,7 +32,24 @@ class SitiosCard extends StatelessWidget {
                               model.fieldsProto!.descripcionSitio!.stringValue
                                   .toString(),
                               style: Theme.of(context).textTheme.subtitle2),
-                        ));
+                      actions: [
+                        TextButton(
+                            child: const Text(
+                              'Sugerencia',
+                              textAlign: TextAlign.center,
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const SugerenciaWidget()),
+                              );
+                            })
+                      ],
+                        );
+                    }
+                        
+                        );
               },
               title: Text(
                   model.fieldsProto!.nombreSitio!.stringValue.toString(),
