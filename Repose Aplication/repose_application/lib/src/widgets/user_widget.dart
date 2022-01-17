@@ -20,6 +20,7 @@ class _ListUsersState extends State<ListUsers> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
         appBar:
             AppBar(centerTitle: true, title: const Text("Lista de Usuarios")),
         body: Container(
