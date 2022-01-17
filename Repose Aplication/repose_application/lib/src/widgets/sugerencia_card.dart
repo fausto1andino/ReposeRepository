@@ -18,11 +18,21 @@ class SugerenciaCard extends StatelessWidget {
               ? const Icon(Icons.score, color: Colors.green): 
               const Icon(Icons.error);
           
-    return Card(
-        child: ListTile(
-            trailing: icon,
-            leading: Text(model.id.toString()),
-            title: Text(model.titulo),
-            subtitle: Text(model.comentario)));
+    return SizedBox(
+      width: 500,
+      height: 100,
+      child: Scaffold(
+        body: Column(
+          children: [
+            Card(
+                child: ListTile(
+                    trailing: icon,
+                    leading: Text(model.id.toString()),
+                    title: Text(model.titulo),
+                    subtitle: Text(model.comentario))),
+          ],
+        ),
+      ),
+    );
   }
 }

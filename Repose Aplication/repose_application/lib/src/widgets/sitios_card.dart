@@ -33,18 +33,25 @@ class SitiosCard extends StatelessWidget {
                                   .toString(),
                               style: Theme.of(context).textTheme.subtitle2),
                       actions: [
-                        TextButton(
-                            child: const Text(
-                              'Sugerencia',
-                              textAlign: TextAlign.center,
-                            ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const SugerenciaWidget()),
-                              );
-                            })
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            TextButton(
+                              style: ButtonStyle( backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.black87)),
+                                child: const Text(
+                                  'Sugerencia',
+                                  textAlign: TextAlign.center,
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const SugerenciaWidget()),
+                                  );
+                                }),
+                          ],
+                        )
                       ],
                         );
                     }

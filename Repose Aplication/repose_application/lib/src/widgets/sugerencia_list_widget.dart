@@ -27,11 +27,12 @@ class SugerenciaWidget extends StatelessWidget {
             );
           }
           return Scaffold(
+             appBar: AppBar(centerTitle: true, title: const Text("Lista de Sugerencias")),
             body: snapshot.data!.isEmpty
                 ? const Center(
                     child: SizedBox.square(
                         dimension: 150.0,
-                        child: Text("No hay datos en el SQLite")))
+                        child: Text("Datos Vacios en SQLite")))
                 : ListView(
                     children: snapshot.data!
                         .map((e) => SugerenciaCard(model: e))
