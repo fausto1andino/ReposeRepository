@@ -69,33 +69,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
     return SizedBox(
       child: Scaffold(
           body: Stepper(
-        controlsBuilder: (BuildContext context, ControlsDetails details) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextButton(
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.black87)),
-                  onPressed: details.onStepCancel,
-                  child: const Text('Regresar'),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextButton(
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.black87)),
-                  onPressed: details.onStepContinue,
-                  child: const Text('Siguiente'),
-                ),
-              ),
-            ],
-          );
-        },
         physics: ScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         elevation: 10,
         type: StepperType.horizontal,
