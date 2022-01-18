@@ -53,7 +53,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
       ];
 
   Future _selectImage(ImageSource source) async {
-    try {
+   
       final imageCamera = await ImagePicker().pickImage(source: source);
       if (imageCamera == null) return;
       final imageTemporary = File(imageCamera.path);
@@ -61,9 +61,6 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
       if (image != null) {
         urlImagen = await _fotosService.uploadImage(image!);
       }
-    } on Exception {
-      // print('Fallo al escoger una imagen: $e');
-    }
     
   }
 
