@@ -64,6 +64,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
     } on Exception {
       // print('Fallo al escoger una imagen: $e');
     }
+    
   }
 
   @override
