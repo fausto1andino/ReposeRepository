@@ -128,10 +128,7 @@ class _SegurenciaFromPageState extends State<SegurenciaFromPage> {
                                               .validate()) return;
                                           _onSaving = true;
                                           setState(() {});
-
-                                          //Vincula el valor de las controles del formulario a los atributos del modelo
                                           _formKey.currentState!.save();
-
                                           _model = await sugerenciaProvider
                                               .addElement(_model);
                                           if (_model.id != null) {

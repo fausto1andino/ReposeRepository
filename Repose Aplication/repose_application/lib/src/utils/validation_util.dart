@@ -45,7 +45,7 @@
   }
 
   String? ageValidation(String? age) {
-    String patttern = r'(^[0-9]*$)'; //comprobar si funciona
+    String patttern = r'(^[0-9]*$)'; 
     RegExp regExp = RegExp(patttern);
     if (!regExp.hasMatch(age!)) {
       return "Edad requiere caracteres numéricos para continuar";

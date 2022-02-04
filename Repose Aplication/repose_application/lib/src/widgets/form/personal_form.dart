@@ -10,7 +10,6 @@ import 'package:repose_application/src/widgets/buttons/imagen_button.dart';
 Widget imageuserdatos(TextEditingController  edad,TextEditingController direccion,TextEditingController nombreusr, Future Function(ImageSource source) _selectImage ) {
    
     return Card(
-      
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         elevation: 15,
         child: Padding(
@@ -79,6 +78,7 @@ Widget imageuserdatos(TextEditingController  edad,TextEditingController direccio
                  
                   ],
                 ),
+                
               ],
             )));
   

@@ -18,52 +18,54 @@ class _ListUsersState extends State<ListUsers> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-        appBar:
-            AppBar(centerTitle: true, title: const Text("Lista de Usuarios")),
-        body: SingleChildScrollView(
-          child: StreamBuilder(
-            stream: widget.currentUser.orderBy('nombreusr').snapshots(),
-            builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (!snapshot.hasData) {
-                return const Center(child: Text('Recargando'));
-              }
-              return Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  padding:
-                  const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-                  child: Column(
-                children: snapshot.data!.docs.map((creedenciales) {
-                  return Card(
-                    child: Container(
-                      decoration: BoxDecoration(
-                       shape: BoxShape.circle,
-                      border: Border.all(),
-                          image: DecorationImage(
-                              image: NetworkImage(
-                                  creedenciales['urlImagen_doc'].toString()),
-                              fit: BoxFit.contain)),
-                      child: ListTile(
-                          title: Text(
-                        creedenciales['Edad'],
-                        style: const TextStyle(
-                          fontSize: 22.0,
+    return SizedBox(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+          appBar:
+              AppBar(centerTitle: true, title: const Text("Lista de Usuarios")),
+          body: SingleChildScrollView(
+            child: StreamBuilder(
+              stream: widget.currentUser.orderBy('nombreusr').snapshots(),
+              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (!snapshot.hasData) {
+                  return const Center(child: Text('Recargando'));
+                }
+                return Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                    child: Column(
+                  children: snapshot.data!.docs.map((creedenciales) {
+                    return Card(
+                      child: Container(
+                        decoration: BoxDecoration(
+                         shape: BoxShape.circle,
+                        border: Border.all(),
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                    creedenciales['urlImagen_doc'].toString()),
+                                fit: BoxFit.contain)),
+                        child: ListTile(
+                            title: Text(
+                          creedenciales['Edad'],
+                          style: const TextStyle(
+                            fontSize: 22.0,
+                          ),
+                        ),
+                        subtitle: Text(creedenciales['direccion']),
+                        trailing: Text(creedenciales['nombreusr']),
                         ),
                       ),
-                      subtitle: Text(creedenciales['direccion']),
-                      trailing: Text(creedenciales['nombreusr']),
-                      ),
+                    );
+                  }).toList(),
                     ),
-                  );
-                }).toList(),
                   ),
-                ),
-              );
-            },
-          ),
-        ));
+                );
+              },
+            ),
+          )),
+    );
   }
 
 }
