@@ -9,15 +9,15 @@ export interface sitios {
 }
 
 export function sitios(data :any, id?:string){
-    const { ciudad,costo,descripcion,nombre,urlImagen } = data;
+    const { ciudad_sitio,costo_sitio,descripcion_sitio,nombre_sitio,urlImagen_sitio } = data;
 
     let object :sitios = {
         idsitios: id, 
-        ciudad_sitio: ciudad,
-        costo_sitio: costo,
-        descripcion_sitio: descripcion,
-        nombre_sitio: nombre,
-        urlImagen_sitio: urlImagen
+        ciudad_sitio: ciudad_sitio,
+        costo_sitio: costo_sitio,
+        descripcion_sitio: descripcion_sitio,
+        nombre_sitio: nombre_sitio,
+        urlImagen_sitio: urlImagen_sitio
     };
     return object;
 }
