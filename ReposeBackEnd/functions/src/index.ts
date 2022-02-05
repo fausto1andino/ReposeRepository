@@ -6,9 +6,10 @@ import * as cors from "cors";
 import { routesPatrion } from "./router";
 
 admin.initializeApp(functions.config().firebase);
+
+
 const db = admin.firestore();
 db.settings({ignoreUndefinedProperties : true, timestampsInSnapshot: true});
-
 
 
 const server = express();
