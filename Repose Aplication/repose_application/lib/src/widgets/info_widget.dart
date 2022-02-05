@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:repose_application/src/models/fields_model.dart';
+import 'package:repose_application/src/models/sitios_model.dart';
 
 import 'package:repose_application/src/services/sitiosturiticos_services.dart';
 import 'package:repose_application/src/widgets/info_card.dart';
@@ -13,7 +13,7 @@ class SitioInfoWidget extends StatefulWidget {
 
 class _SitioInfoWidgetState extends State<SitioInfoWidget> {
   final SitiosTuristicosAPP _sitiosinfoserviceapp = SitiosTuristicosAPP();
-  List<FieldsProto>? _listofsitiosinfo;
+  List<Sitios>? _listofsitiosinfo;
 
   @override
   void initState() {

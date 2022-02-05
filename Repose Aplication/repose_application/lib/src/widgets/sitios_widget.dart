@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:repose_application/src/models/fields_model.dart';
+import 'package:repose_application/src/models/sitios_model.dart';
 
 import 'package:repose_application/src/services/sitiosturiticos_services.dart';
 import 'package:repose_application/src/widgets/sitios_card.dart';
@@ -14,7 +14,7 @@ class SitiosTuristicosWidget extends StatefulWidget {
 class _SitiosTuristicosWidgetState extends State<SitiosTuristicosWidget> {
 
   final SitiosTuristicosAPP _sitiosserviceapp = SitiosTuristicosAPP();
-  List<FieldsProto>? _listofsitios;
+  List<Sitios>? _listofsitios;
 
   @override
   void initState() {

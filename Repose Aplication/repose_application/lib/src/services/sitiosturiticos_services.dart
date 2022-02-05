@@ -1,14 +1,16 @@
 import 'package:http/http.dart' as http;
-import 'package:repose_application/src/models/fields_model.dart';
+
 import 'dart:convert';
+
+import 'package:repose_application/src/models/sitios_model.dart';
 
 class SitiosTuristicosAPP {
   SitiosTuristicosAPP();
 
   final String _rootUrl = 'https://reposeturismapp.web.app/api/sitios';
 
-  Future<List<FieldsProto>> getSitios() async {
-    List<FieldsProto> resultSitios = [];
+  Future<List<Sitios>> getSitios() async {
+    List<Sitios> resultSitios = [];
     try {
       var url = Uri.parse(_rootUrl);
       final responseList = await http.get(url);
@@ -16,7 +18,7 @@ class SitiosTuristicosAPP {
       List<dynamic> listSitios = json.decode(responseList.body);
 
       for (var item in listSitios) {
-        final sitios = FieldsProto.fromJson(item);
+        final sitios = Sitios.fromJson(item);
         resultSitios.add(sitios);
       }
       return resultSitios;

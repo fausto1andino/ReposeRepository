@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:repose_application/src/models/fields_model.dart';
+import 'package:repose_application/src/models/sitios_model.dart';
+
 import 'package:repose_application/src/widgets/sugerencia_list_widget.dart';
 
 class SitiosCard extends StatelessWidget {
   const SitiosCard({Key? key, required this.model}) : super(key: key);
-  final FieldsProto model;
+  final Sitios model;
 
   @override
   Widget build(BuildContext context) {
-    final url = model.fieldsProto?.urlImagenSitio!.stringValue;
+    final url = model.urlImagenSitio;
     return SizedBox(
       height: 500,
       width: 300,
@@ -25,11 +26,11 @@ class SitiosCard extends StatelessWidget {
                     builder: (BuildContext context) {
                       return AlertDialog(
                           title: Text(
-                              model.fieldsProto!.nombreSitio!.stringValue
+                              model.nombreSitio
                                   .toString(),
                               style: Theme.of(context).textTheme.headline6),
                           content: Text(
-                              model.fieldsProto!.descripcionSitio!.stringValue
+                              model.descripcionSitio
                                   .toString(),
                               style: Theme.of(context).textTheme.subtitle2),
                       actions: [
@@ -59,20 +60,20 @@ class SitiosCard extends StatelessWidget {
                         );
               },
               title: Text(
-                  model.fieldsProto!.nombreSitio!.stringValue.toString(),
+                  model.nombreSitio.toString(),
                   style: Theme.of(context)
                       .textTheme
                       .headline6!
                       .copyWith(color: Colors.white)),
               subtitle: Text(
-                  model.fieldsProto!.ciudadSitio!.stringValue.toString(),
+                  model.ciudadSitio.toString(),
                   style: Theme.of(context)
                       .textTheme
                       .bodyText1!
                       .copyWith(color: Colors.white)),
               trailing: Text(
                   "Costo: " +
-                      model.fieldsProto!.costoSitio!.integerValue.toString() +
+                      model.costoSitio.toString()+
                       " \$",
                   style: Theme.of(context)
                       .textTheme
