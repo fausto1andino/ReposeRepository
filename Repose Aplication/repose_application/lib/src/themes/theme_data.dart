@@ -41,9 +41,7 @@ class AppTheme {
             labelColor: ligthMode ? const Color(0xFFE76610) : Colors.white),
         colorScheme: ColorScheme(
             primary: const Color(0xFFE76610),
-            primaryVariant: const Color(0xFF1d87e5),
             secondary: const Color(0XFFFFFFFF),
-            secondaryVariant: const Color(0XFFFFFFFF),
             surface: Colors.white,
             background: const Color(0x1AFFFFFF),
             error: Colors.red,
