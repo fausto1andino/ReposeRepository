@@ -2,7 +2,7 @@ import * as admin from 'firebase-admin';
 import { Request, Response } from "express";
 import { Respuesta } from '../models/respuesta';
 
-export async function registro(req: Request, res: Response) {           
+export async function cliente(req: Request, res: Response) {           
     try{     
         const { email, password, displayName, role, group } = req.body;
         const userId = await admin.auth().getUserByEmail(email);

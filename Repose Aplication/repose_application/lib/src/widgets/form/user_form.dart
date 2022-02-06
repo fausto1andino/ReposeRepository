@@ -1,5 +1,5 @@
   import 'package:flutter/material.dart';
-import 'package:repose_application/src/utils/validation_util.dart';
+import 'package:repose_application/src/bloc/validation_util.dart';
 
 Widget user(TextEditingController emailUsr,  TextEditingController passwordUsr,) {
     return Card(

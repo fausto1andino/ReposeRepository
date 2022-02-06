@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:repose_application/src/utils/validation_util.dart';
+import 'package:repose_application/src/bloc/validation_util.dart';
 import 'package:repose_application/src/widgets/buttons/imagen_button.dart';
 
 
