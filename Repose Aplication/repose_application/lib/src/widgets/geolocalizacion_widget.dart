@@ -2,11 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:provider/provider.dart';
-import 'package:repose_application/src/models/sugerencia_model.dart';
-import 'package:repose_application/src/pages/sugerencia_page.dart';
-import 'package:repose_application/src/providers/sugerencias_provider.dart';
-import 'package:repose_application/src/widgets/sugerencia_card.dart';
+
 
 
 class GeolocalizacionWidget extends StatefulWidget {
