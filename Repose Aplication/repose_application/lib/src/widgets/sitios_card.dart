@@ -74,22 +74,17 @@ class SitiosCard extends StatelessWidget {
                         
                         );
               },
-              title: Text(
-                  model.nombreSitio.toString(),
+              title: Text(model.nombreSitio.toString(),
                   style: Theme.of(context)
                       .textTheme
                       .headline6!
                       .copyWith(color: Colors.white)),
-              subtitle: Text(
-                  model.ciudadSitio.toString(),
+              subtitle: Text(model.ciudadSitio.toString(),
                   style: Theme.of(context)
                       .textTheme
                       .bodyText1!
                       .copyWith(color: Colors.white)),
-              trailing: Text(
-                  "Costo: " +
-                      model.costoSitio.toString()+
-                      " \$",
+              trailing: Text("Costo: " + model.costoSitio.toString() + " \$",
                   style: Theme.of(context)
                       .textTheme
                       .headline6!

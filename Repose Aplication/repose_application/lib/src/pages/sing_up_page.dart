@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:repose_application/src/bloc/signup_bloc.dart';
 import 'package:repose_application/src/models/cliente_model.dart';
 import 'package:repose_application/src/pages/login_page.dart';
-
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:repose_application/src/services/clientes_service.dart';
+import 'package:repose_application/src/services/notificationservice.dart';
+
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -32,6 +34,9 @@ class _SignUpPageState extends State<SignUpPage> {
   final SignUpBloc _signUpBloc = SignUpBloc();
 
   final ClienteService _cliServ = ClienteService();
+
+  final NotificationService _ntfc = NotificationService();
+ 
 
   final List<String> _roles = ["Administrador", "Usuario", "Centro Turistico"];
   String _roleSelected = "Administrador";
@@ -254,6 +259,12 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   Future<void> _enviaralServer() async {
+  
+
+
+
+
+
     FirebaseFirestore.instance.runTransaction((Transaction transaction) async {
       CollectionReference reference;
       reference = FirebaseFirestore.instance.collection('cliente');
@@ -275,7 +286,11 @@ class _SignUpPageState extends State<SignUpPage> {
     )).user;
     us = user!.uid;
     if (user != null) {
+      String? token = await FirebaseMessaging.instance.getToken();
+        FirebaseMessaging messaging = FirebaseMessaging.instance;
       await _enviaralServer();
+      ScaffoldSnackbar.of(context).show(" El usuario con el email ${email.text} y nombre ${displayName.text} Ha sido resgitrado"  );
+    
       setState(() {
         _success = true;
         _userEmail = user.email ?? '';
@@ -283,5 +298,22 @@ class _SignUpPageState extends State<SignUpPage> {
     } else {
       _success = false;
     }
+    
+  }
+}
+class ScaffoldSnackbar {
+  ScaffoldSnackbar(this._context);
+  final BuildContext _context;
+
+  factory ScaffoldSnackbar.of(BuildContext context) {
+    return ScaffoldSnackbar(context);
+  }
+
+  void show(String message) {
+    ScaffoldMessenger.of(_context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(content: Text(message)),
+      );
   }
 }

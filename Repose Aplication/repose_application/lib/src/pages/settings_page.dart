@@ -31,7 +31,8 @@ class _SettingPageState extends State<SettingPage> {
     return Scaffold(
       appBar: AppBar(title: const Text("Cliente - Ajustes")),
       body: StreamBuilder(
-          stream: widget.currentCliente.where("uid", isEqualTo: userId ).snapshots(),
+          stream:
+              widget.currentCliente.where("uid", isEqualTo: userId).snapshots(),
           builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (!snapshot.hasData) {
               return const Center(child: Text('Cargando'));
@@ -46,9 +47,9 @@ class _SettingPageState extends State<SettingPage> {
                     Card(
                         child: ListTile(
                             trailing: IconButton(
-                                onPressed: () {
-                                  _auth.signOut();
-                                  Navigator.push(
+                                onPressed: () async {
+                                  await _auth.signOut();
+                                  await Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
@@ -58,31 +59,28 @@ class _SettingPageState extends State<SettingPage> {
                             leading: const Icon(Icons.person),
                             title: Text(cls.displayName!),
                             subtitle: const Text("Nombre"))),
-                     Card(
-                child: ListTile(
-                    leading: const Icon(Icons.computer),
-                    title: Text(cls.role!.toString().toUpperCase()),
-                    subtitle: const Text("Rol"))),
                     Card(
-                child: ListTile(
-                    leading: const Icon(Icons.important_devices),
-                    title: Text(cls.uid!.toString()),
-                    subtitle: const Text("Id"))),
-                Card(
-                child: ListTile(
-                    leading: const Icon(Icons.email),
-                    title: Text(cls.email!.toString()),
-                    subtitle: const Text("Correo electrónico"))),
-                 Card(
-                child: ListTile(
-                    leading: const Icon(Icons.people),
-                    title: Text("GRUPO " + cls.group!.toString()),
-                         
-                    subtitle: const Text("Grupo de trabajo"))),
+                        child: ListTile(
+                            leading: const Icon(Icons.computer),
+                            title: Text(cls.role!.toString().toUpperCase()),
+                            subtitle: const Text("Rol"))),
+                    Card(
+                        child: ListTile(
+                            leading: const Icon(Icons.important_devices),
+                            title: Text(cls.uid!.toString()),
+                            subtitle: const Text("Id"))),
+                    Card(
+                        child: ListTile(
+                            leading: const Icon(Icons.email),
+                            title: Text(cls.email!.toString()),
+                            subtitle: const Text("Correo electrónico"))),
+                    Card(
+                        child: ListTile(
+                            leading: const Icon(Icons.people),
+                            title: Text("GRUPO " + cls.group!.toString()),
+                            subtitle: const Text("Grupo de trabajo"))),
                     const SettingMode()
                   ]),
-                  
-
                 );
               }).toList(),
             );
@@ -112,4 +110,6 @@ class SettingMode extends StatelessWidget {
       ),
     );
   }
+
+  
 }
