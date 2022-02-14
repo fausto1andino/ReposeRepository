@@ -38,34 +38,40 @@ class SitiosCard extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            TextButton(
-                              style: ButtonStyle( backgroundColor:
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextButton(
+                                style: ButtonStyle( backgroundColor:
                           MaterialStateProperty.all<Color>(Colors.black87)),
-                                child: const Text(
-                                  'Sugerencia',
-                                  textAlign: TextAlign.center,
-                                ),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const SugerenciaWidget()),
-                                  );
-                                }),
-                            TextButton(
-                              style: ButtonStyle( backgroundColor:
+                                  child: const Text(
+                                    'Sugerencia',
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => const SugerenciaWidget()),
+                                    );
+                                  }),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextButton(
+                                style: ButtonStyle( backgroundColor:
                           MaterialStateProperty.all<Color>(Colors.black87)),
-                                child: const Text(
-                                  'Ubicacion',
-                                  textAlign: TextAlign.center,
-                                ),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const GeolocalizacionWidget()),
-                                  );
-                                }),
+                                  child: const Text(
+                                    'Ubicacion',
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => const GeolocalizacionWidget()),
+                                    );
+                                  }),
+                            ),
                           ],
                         )
                       ],
