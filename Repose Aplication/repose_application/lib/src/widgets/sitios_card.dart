@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:repose_application/src/models/sitios_model.dart';
+import 'package:repose_application/src/widgets/geolocalizacion_widget.dart';
 
 import 'package:repose_application/src/widgets/sugerencia_list_widget.dart';
 
@@ -49,6 +50,20 @@ class SitiosCard extends StatelessWidget {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => const SugerenciaWidget()),
+                                  );
+                                }),
+                            TextButton(
+                              style: ButtonStyle( backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.black87)),
+                                child: const Text(
+                                  'Ubicacion',
+                                  textAlign: TextAlign.center,
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const GeolocalizacionWidget()),
                                   );
                                 }),
                           ],
