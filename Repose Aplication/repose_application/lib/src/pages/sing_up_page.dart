@@ -259,11 +259,6 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   Future<void> _enviaralServer() async {
-  
-
-
-
-
 
     FirebaseFirestore.instance.runTransaction((Transaction transaction) async {
       CollectionReference reference;

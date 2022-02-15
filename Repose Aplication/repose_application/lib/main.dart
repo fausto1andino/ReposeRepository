@@ -4,16 +4,16 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'firebase_options.dart';
+import 'dart:developer' as developer;
+
 import 'package:repose_application/src/pages/login_page.dart';
 import 'package:repose_application/src/pages/settings_page.dart';
 import 'package:repose_application/src/pages/sing_up_page.dart';
 import 'package:repose_application/src/providers/main_provider.dart';
 import 'package:repose_application/src/providers/sugerencias_provider.dart';
-
 import 'package:repose_application/src/themes/theme_data.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'firebase_options.dart';
-import 'dart:developer' as developer;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -5,9 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 import 'package:repose_application/src/bloc/login_bloc.dart';
-
 import 'package:repose_application/src/pages/home_page.dart';
-
 import 'package:repose_application/src/services/clientes_service.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;

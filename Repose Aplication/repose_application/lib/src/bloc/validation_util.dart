@@ -1,6 +1,8 @@
 
 
 import 'dart:async';
+
+
 class Validator {
   final emailValidator = StreamTransformer<String, String>.fromHandlers(
     handleData: (data, sink) {
