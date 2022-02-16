@@ -72,13 +72,15 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
       floatingActionButton: 
       
       Padding(
-        padding: const EdgeInsets.only(right: 100.0),
+        padding: const EdgeInsets.only(right: 100.0, bottom: 100.0),
         child: FloatingActionButton.extended(
           onPressed: _goToTheLake,
           label: const Text('Lugar Turistico'),
           icon: const Icon(Icons.directions_boat),
        
         ),
+
+        
         
       ),
       
