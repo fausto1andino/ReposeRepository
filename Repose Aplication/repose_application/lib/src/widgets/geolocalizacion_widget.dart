@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:repose_application/src/models/sitios_model.dart';
 
@@ -18,6 +17,20 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
   Completer<GoogleMapController> _controller = Completer();
   late final latitud  = widget.model.lat;
   late final longitud  = widget.model.long;
+  late final nombresitios = widget.model.nombreSitio;
+
+  final Map<String, Marker> _markers = {};
+
+  Future<void> _onMapCreated(GoogleMapController controller) async {
+    setState(() {
+      _markers.clear();
+      final marker = Marker(
+        markerId: MarkerId(nombresitios),
+        position: LatLng(latitud as double, longitud as double)
+        );
+      _markers[nombresitios] = marker;
+    });
+  }
 
   @override
   void initState() {
@@ -43,19 +56,12 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
           
     return Scaffold(
       body: GoogleMap(
+        onMapCreated: _onMapCreated,
         mapType: MapType.normal,
         initialCameraPosition: _kGooglePlex,
         myLocationEnabled:true,
         myLocationButtonEnabled:true,
-        
-        markers: const <Marker>{
-          
-        },
-
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
-         padding: EdgeInsets.only(top: 650.0,),
+        padding: EdgeInsets.only(top: 650.0,),
       ),
       floatingActionButton: 
       
