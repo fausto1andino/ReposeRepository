@@ -45,12 +45,24 @@ class _HomePageState extends State<HomePage> {
       drawer: Drawer(
           child: ListView(
         children: [
-          ListTile(
-            onTap: () {
-              Navigator.pushNamed(context, "/settings");
-            },
-            leading: const Icon(Icons.settings),
-            title: const Text("Ajustes"),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+               decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Theme.of(context).hintColor,
+                                  width: 1.0),
+                              color: Theme.of(context).scaffoldBackgroundColor,
+                              borderRadius: BorderRadius.circular(25.0),
+                            ),
+              child: ListTile(
+                onTap: () {
+                  Navigator.pushNamed(context, "/settings");
+                },
+                leading: const Icon(Icons.settings),
+                title: const Text("Ajustes"),
+              ),
+            ),
           )
         ],
       )),

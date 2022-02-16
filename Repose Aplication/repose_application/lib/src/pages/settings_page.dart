@@ -58,6 +58,29 @@ class _SettingPageState extends State<SettingPage> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Card(
+
+                          child: ListTile(
+
+                              title: Text("Foto de perfil",
+                              textAlign: TextAlign.center,
+                              ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 170,
+                        width: 170,
+                        child: Container(
+                             decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(25.0),
+              image: DecorationImage(
+                
+                  image: NetworkImage(cls.urlimagen.toString()), fit: BoxFit.fitHeight)),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
                             child: ListTile(
                                 trailing: IconButton(
                                     onPressed: () async {
@@ -102,8 +125,8 @@ class _SettingPageState extends State<SettingPage> {
                         child: Card(
                             child: ListTile(
                                 leading: const Icon(Icons.people),
-                                title: Text("GRUPO " + cls.group!.toString()),
-                                subtitle: const Text("Grupo de trabajo"))),
+                                title: Text("Estado " + cls.group!.toString()),
+                                subtitle: const Text("Tipo de Usuario"))),
                       ),
                       const SettingMode()
                     ]),

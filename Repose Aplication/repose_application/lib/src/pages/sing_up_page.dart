@@ -1,13 +1,18 @@
 // ignore_for_file: unused_element, unnecessary_null_comparison
 
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:repose_application/src/bloc/signup_bloc.dart';
 import 'package:repose_application/src/models/cliente_model.dart';
 import 'package:repose_application/src/pages/login_page.dart';
+import 'package:repose_application/src/services/Image_service.dart';
 
 import 'package:repose_application/src/services/clientes_service.dart';
+import 'package:repose_application/src/widgets/buttons/imagen_button.dart';
 
 
 class SignUpPage extends StatefulWidget {
@@ -19,9 +24,12 @@ class SignUpPage extends StatefulWidget {
 
 late bool? _success;
 late String _userEmail = '';
+  String? urlImagen;
+  File? image;
 
 class _SignUpPageState extends State<SignUpPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
 
   bool _obscureText = true;
   late String us = "";
@@ -31,7 +39,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final group = TextEditingController();
   final role = TextEditingController();
   final SignUpBloc _signUpBloc = SignUpBloc();
-
+  final FotosService _fotosService = FotosService();
   final ClienteService _cliServ = ClienteService();
 
 
@@ -44,6 +52,19 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
+     Future _selectImage(ImageSource source) async {
+   
+      final imageCamera = await ImagePicker().pickImage(source: source);
+      if (imageCamera == null) return;
+      final imageTemporary = File(imageCamera.path);
+      image = imageTemporary;
+      if (image != null) {
+        urlImagen = await _fotosService.uploadImage(image!);
+      }
+    setState(() {
+      
+    });
+  }
     double size = MediaQuery.of(context).size.height;
 
     return SafeArea(
@@ -187,6 +208,41 @@ class _SignUpPageState extends State<SignUpPage> {
                               }).toList()),
                         ),
                       ),
+                       Column(
+                  children: [
+                     Padding(
+                       padding: const EdgeInsets.all(8.0),
+                       child: Row(
+                         mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                width: 100,
+                                child: ImagenBotonones(
+                                    title: "",
+                                    icon: Icons.image_search,
+                                    onClicked: () =>
+                                        _selectImage(ImageSource.gallery)),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                width: 100,
+                                child: ImagenBotonones(
+                                    title: "",
+                                    icon: Icons.camera_alt,
+                                    onClicked: () =>
+                                        _selectImage(ImageSource.camera)),
+                              ),
+                            ),
+                          ],
+                        ),
+                     ),
+                 
+                  ],
+                ),
                       Padding(
                         padding: const EdgeInsets.only(top: 30.0),
                         child: StreamBuilder<bool>(
@@ -297,6 +353,7 @@ class _SignUpPageState extends State<SignUpPage> {
         "displayName": displayName.text,
         "group": group.text = _groupSelected,
         "role": role.text = _roleSelected,
+        "urlimage": urlImagen
       });
     });
   }
