@@ -81,7 +81,9 @@ class _SettingPageState extends State<SettingPage> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Card(
+                          color: Theme.of(context).primaryColorDark,
                             child: ListTile(
+                              textColor: Colors.white,
                                 trailing: IconButton(
                                     onPressed: () async {
                                       await _auth.signOut();
@@ -91,40 +93,49 @@ class _SettingPageState extends State<SettingPage> {
                                               builder: (context) =>
                                                   const LoginPage()));
                                     },
-                                    icon: const Icon(Icons.logout)),
-                                leading: const Icon(Icons.person),
+                                    icon: const Icon(Icons.logout, color: Colors.white, )),
+                                leading: const Icon(Icons.person, color: Colors.white),
                                 title: Text(cls.displayName!),
                                 subtitle: const Text("Nombre"))),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Card(
+                          
+                          color: Theme.of(context).primaryColorDark,
                             child: ListTile(
-                                leading: const Icon(Icons.computer),
+                              textColor: Colors.white,
+                                leading: const Icon(Icons.computer, color: Colors.white),
                                 title: Text(cls.role!.toString().toUpperCase()),
                                 subtitle: const Text("Rol"))),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Card(
+                          color: Theme.of(context).primaryColorDark,
                             child: ListTile(
-                                leading: const Icon(Icons.important_devices),
+                               textColor: Colors.white,
+                                leading: const Icon(Icons.important_devices, color: Colors.white),
                                 title: Text(cls.uid!.toString()),
                                 subtitle: const Text("Id"))),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Card(
+                          color: Theme.of(context).primaryColorDark,
                             child: ListTile(
-                                leading: const Icon(Icons.email),
+                               textColor: Colors.white,
+                                leading: const Icon(Icons.email, color: Colors.white),
                                 title: Text(cls.email!.toString()),
                                 subtitle: const Text("Correo electrónico"))),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Card(
+                          color: Theme.of(context).primaryColorDark,
                             child: ListTile(
-                                leading: const Icon(Icons.people),
+                               textColor: Colors.white,
+                                leading: const Icon(Icons.people, color: Colors.white),
                                 title: Text("Estado " + cls.group!.toString()),
                                 subtitle: const Text("Tipo de Usuario"))),
                       ),
