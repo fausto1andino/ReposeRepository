@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:repose_application/src/models/sitios_model.dart';
-import 'package:repose_application/src/pages/request_permission/request_permission_page.dart';
+
 import 'package:repose_application/src/pages/ubicacion_page.dart';
 import 'package:repose_application/src/routes/routes.dart';
 import 'package:repose_application/src/widgets/geolocalizacion_widget.dart';
@@ -71,7 +71,7 @@ class SitiosCard extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                         builder: (context) => RequestPermissionPage(model: model,)
+                                         builder: (context) => GeolocalizacionWidget(model: model,)
                                       ),
                                     );
                                   }),

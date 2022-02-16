@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:repose_application/src/models/sitios_model.dart';
 
@@ -34,27 +35,47 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
       target: LatLng(latitud as double,  longitud as double),
       tilt: 59.440717697143555,
       zoom: 19.151926040649414);
+      
   @override
   Widget build(BuildContext context) {
     
+   
+          
     return Scaffold(
       body: GoogleMap(
-        mapType: MapType.hybrid,
+        mapType: MapType.normal,
         initialCameraPosition: _kGooglePlex,
+        myLocationEnabled:true,
+        myLocationButtonEnabled:true,
+        
+        markers: const <Marker>{
+          
+        },
+
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
+         padding: EdgeInsets.only(top: 650.0,),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake,
-        label: const Text('To the lake!'),
-        icon: const Icon(Icons.directions_boat),
+      floatingActionButton: 
+      
+      Padding(
+        padding: const EdgeInsets.only(right: 100.0),
+        child: FloatingActionButton.extended(
+          onPressed: _goToTheLake,
+          label: const Text('Lugar Turistico'),
+          icon: const Icon(Icons.directions_boat),
+       
+        ),
+        
       ),
+      
     );
   }
 
   Future<void> _goToTheLake() async {
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+    
   }
 }
