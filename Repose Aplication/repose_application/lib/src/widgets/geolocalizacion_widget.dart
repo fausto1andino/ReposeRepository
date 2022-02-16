@@ -18,19 +18,18 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
   late final latitud  = widget.model.lat;
   late final longitud  = widget.model.long;
   late final nombresitios = widget.model.nombreSitio;
+   late final descripcionsitios = widget.model.descripcionSitio;
 
   final Map<String, Marker> _markers = {};
-
-  Future<void> _onMapCreated(GoogleMapController controller) async {
-    setState(() {
-      _markers.clear();
-      final marker = Marker(
-        markerId: MarkerId(nombresitios),
-        position: LatLng(latitud as double, longitud as double)
+  late final Marker? _marker = Marker(
+        markerId: MarkerId(nombresitios!),
+        position: LatLng(latitud as double, longitud as double),
+        infoWindow: InfoWindow(
+          title: nombresitios,
+          snippet: descripcionsitios,
+        ),
         );
-      _markers[nombresitios] = marker;
-    });
-  }
+  
 
   @override
   void initState() {
@@ -56,12 +55,19 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
           
     return Scaffold(
       body: GoogleMap(
-        onMapCreated: _onMapCreated,
+        
+        onMapCreated: (GoogleMapController controller) {
+          _controller.complete(controller);
+        },
+        
         mapType: MapType.normal,
-        initialCameraPosition: _kGooglePlex,
+        initialCameraPosition: _kLake,
         myLocationEnabled:true,
         myLocationButtonEnabled:true,
         padding: EdgeInsets.only(top: 650.0,),
+        markers:  <Marker>{
+          _marker!
+        },
       ),
       floatingActionButton: 
       
