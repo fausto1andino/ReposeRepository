@@ -18,7 +18,7 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
   late final latitud  = widget.model.lat;
   late final longitud  = widget.model.long;
   late final nombresitios = widget.model.nombreSitio;
-   late final descripcionsitios = widget.model.descripcionSitio;
+  late final descripcionsitios = widget.model.descripcionSitio;
 
   final Map<String, Marker> _markers = {};
   late final Marker? _marker = Marker(

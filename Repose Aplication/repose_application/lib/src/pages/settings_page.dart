@@ -22,69 +22,96 @@ class _SettingPageState extends State<SettingPage> {
   @override
   void initState() {
     WidgetsFlutterBinding.ensureInitialized();
+    
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     String userId = FirebaseAuth.instance.currentUser!.uid;
-    return Scaffold(
-      appBar: AppBar(title: const Text("Cliente - Ajustes")),
-      body: StreamBuilder(
-          stream:
-              widget.currentCliente.where("uid", isEqualTo: userId).snapshots(),
-          builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (!snapshot.hasData) {
-              return const Center(child: Text('Cargando'));
-            }
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: snapshot.data!.docs.map((cliente) {
-                var cls =
-                    Cliente.fromJson(cliente.data() as Map<String, dynamic>);
-                return Flexible(
-                  child: ListView(children: [
-                    Card(
-                        child: ListTile(
-                            trailing: IconButton(
-                                onPressed: () async {
-                                  await _auth.signOut();
-                                  await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const LoginPage()));
-                                },
-                                icon: const Icon(Icons.logout)),
-                            leading: const Icon(Icons.person),
-                            title: Text(cls.displayName!),
-                            subtitle: const Text("Nombre"))),
-                    Card(
-                        child: ListTile(
-                            leading: const Icon(Icons.computer),
-                            title: Text(cls.role!.toString().toUpperCase()),
-                            subtitle: const Text("Rol"))),
-                    Card(
-                        child: ListTile(
-                            leading: const Icon(Icons.important_devices),
-                            title: Text(cls.uid!.toString()),
-                            subtitle: const Text("Id"))),
-                    Card(
-                        child: ListTile(
-                            leading: const Icon(Icons.email),
-                            title: Text(cls.email!.toString()),
-                            subtitle: const Text("Correo electrónico"))),
-                    Card(
-                        child: ListTile(
-                            leading: const Icon(Icons.people),
-                            title: Text("GRUPO " + cls.group!.toString()),
-                            subtitle: const Text("Grupo de trabajo"))),
-                    const SettingMode()
-                  ]),
-                );
-              }).toList(),
-            );
-          }),
+    return SafeArea(
+      
+      child: Scaffold(
+        backgroundColor: Theme.of(context).primaryColorLight,
+        appBar: AppBar(title:  Text("Ajustes",
+        textAlign: TextAlign.center,
+        ),
+        
+        centerTitle: true,
+        backgroundColor: Theme.of(context).primaryColorDark,
+        ),
+        body: StreamBuilder(
+            stream:
+                widget.currentCliente.where("uid", isEqualTo: userId).snapshots(),
+            builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (!snapshot.hasData) {
+                return const Center(child: Text('Cargando'));
+              }
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: snapshot.data!.docs.map((cliente) {
+                  var cls =
+                      Cliente.fromJson(cliente.data() as Map<String, dynamic>);
+                  return Flexible(
+                    
+                    child: ListView(children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                            child: ListTile(
+                                trailing: IconButton(
+                                    onPressed: () async {
+                                      await _auth.signOut();
+                                      await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const LoginPage()));
+                                    },
+                                    icon: const Icon(Icons.logout)),
+                                leading: const Icon(Icons.person),
+                                title: Text(cls.displayName!),
+                                subtitle: const Text("Nombre"))),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                            child: ListTile(
+                                leading: const Icon(Icons.computer),
+                                title: Text(cls.role!.toString().toUpperCase()),
+                                subtitle: const Text("Rol"))),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                            child: ListTile(
+                                leading: const Icon(Icons.important_devices),
+                                title: Text(cls.uid!.toString()),
+                                subtitle: const Text("Id"))),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                            child: ListTile(
+                                leading: const Icon(Icons.email),
+                                title: Text(cls.email!.toString()),
+                                subtitle: const Text("Correo electrónico"))),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                            child: ListTile(
+                                leading: const Icon(Icons.people),
+                                title: Text("GRUPO " + cls.group!.toString()),
+                                subtitle: const Text("Grupo de trabajo"))),
+                      ),
+                      const SettingMode()
+                    ]),
+                  );
+                }).toList(),
+              );
+            }),
+      ),
     );
   }
 }

@@ -10,7 +10,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:repose_application/src/services/clientes_service.dart';
 import 'package:repose_application/src/services/notificationservice.dart';
 
-
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
 
@@ -36,13 +35,12 @@ class _SignUpPageState extends State<SignUpPage> {
   final ClienteService _cliServ = ClienteService();
 
   final NotificationService _ntfc = NotificationService();
- 
 
-  final List<String> _roles = ["Administrador", "Usuario", "Centro Turistico"];
-  String _roleSelected = "Administrador";
+  final List<String> _roles = ["Usuario", "Centro Turistico"];
+  String _roleSelected = "Centro Turistico";
 
-  final List<String> _groups = ["A", "B", "C"];
-  String _groupSelected = "A";
+  final List<String> _groups = ["Estandar", "Premiun", "Golden"];
+  String _groupSelected = "Estandar";
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +51,8 @@ class _SignUpPageState extends State<SignUpPage> {
       body: SingleChildScrollView(
           child: Stack(children: [
         Container(
-          color: Theme.of(context).primaryColorDark,
-          height: size * 0.4,
+          color: Theme.of(context).primaryColorLight,
+          height: size * 1,
         ),
         Padding(
           padding: const EdgeInsets.only(top: 80.0, left: 35.0, right: 35.0),
@@ -62,7 +60,7 @@ class _SignUpPageState extends State<SignUpPage> {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: Text("Registro de usuario",
+                child: Text("Registro",
                     style: Theme.of(context).textTheme.headline4!.apply(
                         color: Theme.of(context).scaffoldBackgroundColor)),
               ),
@@ -127,44 +125,68 @@ class _SignUpPageState extends State<SignUpPage> {
                                     icon: const Icon(Icons.lock),
                                     labelText: "Contraseña"));
                           }),
-                      DropdownButton<String>(
-                          onChanged: (String? newValue) {
-                            _roleSelected = newValue!;
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                color: Theme.of(context).highlightColor,
+                                width: 1.0),
+                            color: Theme.of(context).scaffoldBackgroundColor,
+                            borderRadius: BorderRadius.circular(25.0),
+                          ),
+                          child: DropdownButton<String>(
+                              onChanged: (String? newValue) {
+                                _roleSelected = newValue!;
 
-                            setState(() {});
-                          },
-                          value: _roleSelected,
-                          icon: const Icon(Icons.arrow_downward),
-                          elevation: 16,
-                          style:
-                              TextStyle(color: Theme.of(context).primaryColor),
-                          underline: Container(height: 2),
-                          items: _roles
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList()),
-                      DropdownButton<String>(
-                          onChanged: (String? newValue) async {
-                            _groupSelected = newValue!;
+                                setState(() {});
+                              },
+                              value: _roleSelected,
+                              icon: const Icon(Icons.arrow_drop_down),
+                              elevation: 16,
+                              style: TextStyle(
+                                  color: Theme.of(context).primaryColor),
+                              underline: Container(height: 2),
+                              items: _roles.map<DropdownMenuItem<String>>(
+                                  (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList()),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                color: Theme.of(context).highlightColor,
+                                width: 1.0),
+                            color: Theme.of(context).scaffoldBackgroundColor,
+                            borderRadius: BorderRadius.circular(25.0),
+                          ),
+                          child: DropdownButton<String>(
+                              onChanged: (String? newValue) async {
+                                _groupSelected = newValue!;
 
-                            setState(() {});
-                          },
-                          value: _groupSelected,
-                          icon: const Icon(Icons.arrow_downward),
-                          elevation: 16,
-                          style:
-                              TextStyle(color: Theme.of(context).primaryColor),
-                          underline: Container(height: 2),
-                          items: _groups
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList()),
+                                setState(() {});
+                              },
+                              value: _groupSelected,
+                              icon: const Icon(Icons.arrow_drop_down),
+                              elevation: 16,
+                              style: TextStyle(
+                                  color: Theme.of(context).primaryColor),
+                              underline: Container(height: 2),
+                              items: _groups.map<DropdownMenuItem<String>>(
+                                  (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList()),
+                        ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(top: 30.0),
                         child: StreamBuilder<bool>(
@@ -177,17 +199,13 @@ class _SignUpPageState extends State<SignUpPage> {
                                             await _register();
                                             if (_success = true) {
                                               await Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            const LoginPage())
-                                                            
-                                                            );
-                                                            setState(() {
-                                                              
-                                                            });
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          const LoginPage()));
+                                              setState(() {});
                                             }
-                                             Cliente cli = Cliente(
+                                            Cliente cli = Cliente(
                                                 group: _groupSelected,
                                                 role: _roleSelected,
                                                 displayName:
@@ -246,7 +264,17 @@ class _SignUpPageState extends State<SignUpPage> {
                                   icon: const Icon(Icons.app_registration),
                                   label: const Text("Registrarte"));
                             }),
-                      )
+                      ),
+                      ElevatedButton.icon(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const LoginPage()));
+                            setState(() {});
+                          },
+                          icon: const Icon(Icons.cancel),
+                          label: const Text("Cancelar"))
                     ],
                   ),
                 ),
@@ -259,7 +287,6 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   Future<void> _enviaralServer() async {
-
     FirebaseFirestore.instance.runTransaction((Transaction transaction) async {
       CollectionReference reference;
       reference = FirebaseFirestore.instance.collection('cliente');
@@ -278,14 +305,16 @@ class _SignUpPageState extends State<SignUpPage> {
     final User? user = (await _auth.createUserWithEmailAndPassword(
       email: email.text,
       password: password.text,
-    )).user;
+    ))
+        .user;
     us = user!.uid;
     if (user != null) {
       String? token = await FirebaseMessaging.instance.getToken();
-        FirebaseMessaging messaging = FirebaseMessaging.instance;
+      FirebaseMessaging messaging = FirebaseMessaging.instance;
       await _enviaralServer();
-      ScaffoldSnackbar.of(context).show(" El usuario con el email ${email.text} y nombre ${displayName.text} Ha sido resgitrado"  );
-    
+      ScaffoldSnackbar.of(context).show(
+          " El usuario con el email ${email.text} y nombre ${displayName.text} Ha sido resgitrado");
+
       setState(() {
         _success = true;
         _userEmail = user.email ?? '';
@@ -293,9 +322,9 @@ class _SignUpPageState extends State<SignUpPage> {
     } else {
       _success = false;
     }
-    
   }
 }
+
 class ScaffoldSnackbar {
   ScaffoldSnackbar(this._context);
   final BuildContext _context;

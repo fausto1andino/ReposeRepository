@@ -45,13 +45,13 @@ class _LoginPageState extends State<LoginPage> {
         child: Scaffold(
             body: Stack(children: [
       Container(
-        color: Theme.of(context).primaryColorDark,
-        height: size.height * 0.4,
+        color: Theme.of(context).primaryColorLight,
+        height: size.height * 1,
       ),
       SingleChildScrollView(
           child: Center(
               child: SizedBox(
-                  width: size.width * .80,
+                  width: size.width * .75,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [

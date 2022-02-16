@@ -20,7 +20,7 @@ class HomePage extends StatefulWidget {
 
  final List<String> _options = [
     " Pagina Inicial ",
-    " Sitios ",
+    " Sitios Turísticos ",
     " Registro "
   ];
 class _HomePageState extends State<HomePage> {
@@ -60,32 +60,15 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       )),
-      appBar: AppBar(centerTitle: true, title: Text(_options[_selectedIndex]), leading: SizedBox.square(
+      appBar: AppBar(centerTitle: true, title: Text("Sitios Turísticos"), leading: SizedBox.square(
         dimension: 25.0,
-              child: Switch(
-                  value: mainProvider.mode,
-                  onChanged: (bool value) async {
-                    mainProvider.mode = value;
-                    final prefs = await SharedPreferences.getInstance();
-                    await prefs.setBool("mode", value);
-                  }
-      ))),
+             )),
        body: _connectionStatus == ConnectivityResult.none
           ? TableroWidget(
               titulo: MenuItem("No hay internet", Icons.cloud_off),
               descripcion: "Verifique la conexión")
           : PageStorage(bucket: _bucket, child: contentWidgets[_selectedIndex]),
-      bottomNavigationBar: BottomNavigationBar(
-          onTap: (int index) {
-            _selectedIndex = index;
-            setState(() {});
-          },
-          type: BottomNavigationBarType.fixed,
-          items: menuOption
-              .map((e) =>
-                  BottomNavigationBarItem(label: e.label, icon: Icon(e.icon)))
-              .toList(),
-          currentIndex: _selectedIndex),
+     
     );
   }
   
