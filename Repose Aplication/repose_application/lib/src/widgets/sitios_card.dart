@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:repose_application/src/models/sitios_model.dart';
 
-import 'package:repose_application/src/pages/ubicacion_page.dart';
-import 'package:repose_application/src/routes/routes.dart';
+
 import 'package:repose_application/src/widgets/geolocalizacion_widget.dart';
 
 import 'package:repose_application/src/widgets/sugerencia_list_widget.dart';

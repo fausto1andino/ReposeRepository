@@ -1,4 +1,4 @@
-// ignore_for_file: unused_element
+// ignore_for_file: unused_element, unnecessary_null_comparison
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:repose_application/src/bloc/signup_bloc.dart';
 import 'package:repose_application/src/models/cliente_model.dart';
 import 'package:repose_application/src/pages/login_page.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+
 import 'package:repose_application/src/services/clientes_service.dart';
-import 'package:repose_application/src/services/notificationservice.dart';
+
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -34,7 +34,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   final ClienteService _cliServ = ClienteService();
 
-  final NotificationService _ntfc = NotificationService();
+
 
   final List<String> _roles = ["Usuario", "Centro Turistico"];
   String _roleSelected = "Centro Turistico";
@@ -309,8 +309,8 @@ class _SignUpPageState extends State<SignUpPage> {
         .user;
     us = user!.uid;
     if (user != null) {
-      String? token = await FirebaseMessaging.instance.getToken();
-      FirebaseMessaging messaging = FirebaseMessaging.instance;
+      
+ 
       await _enviaralServer();
       ScaffoldSnackbar.of(context).show(
           " El usuario con el email ${email.text} y nombre ${displayName.text} Ha sido resgitrado");

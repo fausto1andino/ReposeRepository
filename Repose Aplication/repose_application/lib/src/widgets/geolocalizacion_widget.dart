@@ -1,6 +1,8 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:async';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:repose_application/src/models/sitios_model.dart';
@@ -20,7 +22,7 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
   late final nombresitios = widget.model.nombreSitio;
   late final descripcionsitios = widget.model.descripcionSitio;
 
-  final Map<String, Marker> _markers = {};
+  
   late final Marker? _marker = Marker(
         markerId: MarkerId(nombresitios!),
         position: LatLng(latitud as double, longitud as double),
