@@ -1,15 +1,16 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:repose_application/src/models/sitios_model.dart';
 import 'package:repose_application/src/pages/request_permission/request_permission_controller.dart';
 import 'package:repose_application/src/routes/routes.dart';
 import 'package:repose_application/src/widgets/geolocalizacion_widget.dart';
 
 class RequestPermissionPage extends StatefulWidget {
-  RequestPermissionPage({Key? key}) : super(key: key);
-
+  RequestPermissionPage({Key? key, required this.model}) : super(key: key);
+final Sitios model;
   @override
   State<RequestPermissionPage> createState() => _RequestPermissionPageState();
 }
@@ -17,7 +18,7 @@ class RequestPermissionPage extends StatefulWidget {
 class _RequestPermissionPageState extends State<RequestPermissionPage> {
   final _controller = RequestPermissionController(Permission.locationWhenInUse);
   late StreamSubscription _subscription;
-
+  
   @override
   void initState() {
     super.initState();
@@ -55,7 +56,7 @@ class _RequestPermissionPageState extends State<RequestPermissionPage> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => GeolocalizacionWidget()));
+                      builder: (context) => GeolocalizacionWidget(model: widget.model ,)));
             },
           ),
         ),

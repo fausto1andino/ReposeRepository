@@ -1,34 +1,42 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
-
+import 'package:repose_application/src/models/sitios_model.dart';
 
 class GeolocalizacionWidget extends StatefulWidget {
-  const GeolocalizacionWidget({Key? key}) : super(key: key);
-
+  const GeolocalizacionWidget({Key? key, required this.model})
+      : super(key: key);
+  final Sitios model;
   @override
   State<GeolocalizacionWidget> createState() => _GeolocalizacionWidgetState();
 }
 
 class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
-
   Completer<GoogleMapController> _controller = Completer();
-
-   static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
-
-  static final CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
+  late final latitud  = widget.model.lat;
+  late final longitud  = widget.model.long;
 
   @override
+  void initState() {
+    super.initState();
+    Sitios _sitios;
+    _sitios = widget.model;
+  
+  }
+  late final CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(latitud  as double, longitud as double),
+    zoom: 14.4746,
+  );
+     late final CameraPosition _kLake = CameraPosition(
+      bearing: 192.8334901395799,
+      target: LatLng(latitud as double,  longitud as double),
+      tilt: 59.440717697143555,
+      zoom: 19.151926040649414);
+  @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       body: GoogleMap(
         mapType: MapType.hybrid,
@@ -36,16 +44,17 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
-      ), floatingActionButton: FloatingActionButton.extended(
-          onPressed: _goToTheLake,
-          label: const Text('To the lake!'),
-          icon: const Icon(Icons.directions_boat),
-        ),);
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: _goToTheLake,
+        label: const Text('To the lake!'),
+        icon: const Icon(Icons.directions_boat),
+      ),
+    );
   }
 
   Future<void> _goToTheLake() async {
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
   }
-
 }

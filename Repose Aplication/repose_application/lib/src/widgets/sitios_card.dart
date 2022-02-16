@@ -71,7 +71,7 @@ class SitiosCard extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                         builder: (context) => RequestPermissionPage()
+                                         builder: (context) => RequestPermissionPage(model: model,)
                                       ),
                                     );
                                   }),
