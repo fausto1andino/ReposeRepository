@@ -6,6 +6,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:repose_application/src/models/sitios_model.dart';
+import 'package:repose_application/src/utils/map_style.dart';
 
 class GeolocalizacionWidget extends StatefulWidget {
   const GeolocalizacionWidget({Key? key, required this.model})
@@ -31,6 +32,7 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
           snippet: descripcionsitios,
         ),
         );
+  
   
 
   @override
@@ -60,6 +62,7 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
         
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
+          controller.setMapStyle(mapStyle);
         },
         
         mapType: MapType.normal,
