@@ -50,7 +50,8 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
         future: getCurrentPosition(),
         builder: (context, AsyncSnapshot snapshot) {
           if (!snapshot.hasData) {
-            return const Center(child: Text('Cargando'));
+            return const Center(child: SizedBox(
+                height: 50.0, width: 50.0, child: CircularProgressIndicator()));
           }
           late final LatLng startLocation =
               LatLng(snapshot.data!.latitude, snapshot.data!.longitude);
@@ -63,13 +64,17 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
           );
 
           List<LatLng> latlng = [startLocation, endLocation];
+          final Set<Polyline> _polyline = {
+            Polyline(
+              polylineId: PolylineId(nombresitios!),
+              visible: true,
+              points: latlng,
+              color: Colors.blue,
+              geodesic: true,
+            )
+          };
 
-
-
-
-          
-
-        return Scaffold(
+          return Scaffold(
             appBar: AppBar(
               title: Text("Direccion del Lugar turistico"),
               backgroundColor: Colors.deepPurpleAccent,
@@ -81,7 +86,7 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
                 zoom: 16.0,
               ),
               markers: <Marker>{startLocationes!, endLocationes!},
-              polylines: Set<Polyline>.of(polylines.values),
+              polylines: _polyline,
               myLocationEnabled: true,
               myLocationButtonEnabled: true,
               mapType: MapType.normal,
@@ -92,10 +97,7 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
               },
             ),
           );
-        }
-   
-
-    );
+        });
   }
 
   addPolyLine(List<LatLng> polylineCoordinates) {
@@ -104,7 +106,7 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
       polylineId: id,
       color: Colors.deepPurpleAccent,
       points: polylineCoordinates,
-        width: 8,
+      width: 8,
     );
     polylines[id] = polyline;
     setState(() {});
@@ -116,29 +118,24 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
     return position;
   }
 
-getDirections() async {
-      List<LatLng> polylineCoordinates = [];
-      Position position = await Geolocator.getCurrentPosition(
+  getDirections() async {
+    List<LatLng> polylineCoordinates = [];
+    Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-      PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-          googleAPiKey,
-          PointLatLng(position.latitude, position.longitude),
-          PointLatLng(endLocation.latitude, endLocation.longitude),
-          travelMode: TravelMode.driving,
-      );
+    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+      googleAPiKey,
+      PointLatLng(position.latitude, position.longitude),
+      PointLatLng(endLocation.latitude, endLocation.longitude),
+      travelMode: TravelMode.driving,
+    );
 
-      if (result.points.isNotEmpty) {
-            result.points.forEach((PointLatLng point) {
-                polylineCoordinates.add(LatLng(point.latitude, point.longitude));
-            });
-      } else {
-         print(result.errorMessage);
-      }
-      addPolyLine(polylineCoordinates);
+    if (result.points.isNotEmpty) {
+      result.points.forEach((PointLatLng point) {
+        polylineCoordinates.add(LatLng(point.latitude, point.longitude));
+      });
+    } else {
+      print(result.errorMessage);
+    }
+    addPolyLine(polylineCoordinates);
   }
-
-
-
-
 }
-
