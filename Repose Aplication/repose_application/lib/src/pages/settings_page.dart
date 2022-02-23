@@ -83,7 +83,7 @@ class _SettingPageState extends State<SettingPage> {
                         child: Card(
                           color: Theme.of(context).primaryColorDark,
                             child: ListTile(
-                              textColor: Colors.white,
+                              //textColor: Colors.white,
                                 trailing: IconButton(
                                     onPressed: () async {
                                       await _auth.signOut();
@@ -104,7 +104,7 @@ class _SettingPageState extends State<SettingPage> {
                           
                           color: Theme.of(context).primaryColorDark,
                             child: ListTile(
-                              textColor: Colors.white,
+                              //textColor: Colors.white,
                                 leading: const Icon(Icons.computer, color: Colors.white),
                                 title: Text(cls.role!.toString().toUpperCase()),
                                 subtitle: const Text("Rol"))),
@@ -114,7 +114,7 @@ class _SettingPageState extends State<SettingPage> {
                         child: Card(
                           color: Theme.of(context).primaryColorDark,
                             child: ListTile(
-                               textColor: Colors.white,
+                               ///textColor: Colors.white,
                                 leading: const Icon(Icons.important_devices, color: Colors.white),
                                 title: Text(cls.uid!.toString()),
                                 subtitle: const Text("Id"))),
@@ -124,7 +124,7 @@ class _SettingPageState extends State<SettingPage> {
                         child: Card(
                           color: Theme.of(context).primaryColorDark,
                             child: ListTile(
-                               textColor: Colors.white,
+                               //textColor: Colors.white,
                                 leading: const Icon(Icons.email, color: Colors.white),
                                 title: Text(cls.email!.toString()),
                                 subtitle: const Text("Correo electrónico"))),
@@ -134,7 +134,7 @@ class _SettingPageState extends State<SettingPage> {
                         child: Card(
                           color: Theme.of(context).primaryColorDark,
                             child: ListTile(
-                               textColor: Colors.white,
+                               //textColor: Colors.white,
                                 leading: const Icon(Icons.people, color: Colors.white),
                                 title: Text("Estado " + cls.group!.toString()),
                                 subtitle: const Text("Tipo de Usuario"))),
