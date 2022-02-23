@@ -21,6 +21,7 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
     Sitios _sitios;
     _sitios = widget.model;
     getCurrentPosition();
+    getDirections();
   }
 
   late final LatLng endLocation = LatLng(latitud as double, longitud as double);
@@ -49,7 +50,7 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
         future: getCurrentPosition(),
         builder: (context, AsyncSnapshot snapshot) {
           if (!snapshot.hasData) {
-            return const Center(child: Text('loading'));
+            return const Center(child: Text('Cargando'));
           }
           late final LatLng startLocation =
               LatLng(snapshot.data!.latitude, snapshot.data!.longitude);
@@ -63,16 +64,12 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
 
           List<LatLng> latlng = [startLocation, endLocation];
 
-          final Set<Polyline> _polyline = {
-            Polyline(
-              polylineId: PolylineId(nombresitios!),
-              visible: true,
-              points: latlng,
-              color: Colors.blue,
-              geodesic: true,
-            )
-          };
-          return Scaffold(
+
+
+
+          
+
+        return Scaffold(
             appBar: AppBar(
               title: Text("Direccion del Lugar turistico"),
               backgroundColor: Colors.deepPurpleAccent,
@@ -84,7 +81,7 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
                 zoom: 16.0,
               ),
               markers: <Marker>{startLocationes!, endLocationes!},
-              polylines: _polyline,
+              polylines: Set<Polyline>.of(polylines.values),
               myLocationEnabled: true,
               myLocationButtonEnabled: true,
               mapType: MapType.normal,
@@ -95,7 +92,22 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
               },
             ),
           );
-        });
+        }
+   
+
+    );
+  }
+
+  addPolyLine(List<LatLng> polylineCoordinates) {
+    PolylineId id = PolylineId("poly");
+    Polyline polyline = Polyline(
+      polylineId: id,
+      color: Colors.deepPurpleAccent,
+      points: polylineCoordinates,
+        width: 8,
+    );
+    polylines[id] = polyline;
+    setState(() {});
   }
 
   Future<Position> getCurrentPosition() async {
@@ -103,4 +115,30 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
         desiredAccuracy: LocationAccuracy.high);
     return position;
   }
+
+getDirections() async {
+      List<LatLng> polylineCoordinates = [];
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+      PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+          googleAPiKey,
+          PointLatLng(position.latitude, position.longitude),
+          PointLatLng(endLocation.latitude, endLocation.longitude),
+          travelMode: TravelMode.driving,
+      );
+
+      if (result.points.isNotEmpty) {
+            result.points.forEach((PointLatLng point) {
+                polylineCoordinates.add(LatLng(point.latitude, point.longitude));
+            });
+      } else {
+         print(result.errorMessage);
+      }
+      addPolyLine(polylineCoordinates);
+  }
+
+
+
+
 }
+
