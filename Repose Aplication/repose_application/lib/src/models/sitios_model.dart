@@ -17,7 +17,8 @@ class Sitios {
         this.nombreSitio,
         this.urlImagenSitio,
         this.lat,
-        this.long
+        this.long,
+        this.idvid
 
         
     });
@@ -30,6 +31,7 @@ class Sitios {
     String? urlImagenSitio;
     double? lat;
     double? long;
+    String? idvid;
 
     factory Sitios.fromJson(Map<String, dynamic> json) => Sitios(
         idsitios: json["idsitios"],
@@ -39,7 +41,8 @@ class Sitios {
         nombreSitio: json["nombre_sitio"],
         urlImagenSitio: json["urlImagen_sitio"],
         lat: json["lat"],
-        long: json["long"]
+        long: json["long"],
+        idvid: json["idvid"]
     );
 
     Map<String, dynamic> toJson() => {
@@ -50,6 +53,7 @@ class Sitios {
         "nombre_sitio": nombreSitio,
         "urlImagen_sitio": urlImagenSitio,
         "lat": lat,
-        "long": long
+        "long": long,
+        "idvid": idvid
     };
 }

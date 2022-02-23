@@ -75,7 +75,7 @@ class _SettingPageState extends State<SettingPage> {
                                 borderRadius: BorderRadius.circular(25.0),
               image: DecorationImage(
                 
-                  image: NetworkImage(cls.urlimagen.toString()), fit: BoxFit.fitHeight)),
+                  image: NetworkImage(cls.urlimagen.toString()), fit: BoxFit.cover)),
                         ),
                       ),
                       Padding(

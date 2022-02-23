@@ -7,6 +7,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:repose_application/src/pages/home_page.dart';
 import 'firebase_options.dart';
 import 'dart:developer' as developer;
 
@@ -132,9 +133,7 @@ class _MyAppState extends State<MyApp> {
                       },
                       home: mainProvider.token == ""
                           ? const LoginPage()
-                          : JwtDecoder.isExpired(mainProvider.token)
-                              ? const LoginPage()
-                              : const LoginPage()));
+                              : const HomePage()));
             } catch (e) {
               //print(e);
             }

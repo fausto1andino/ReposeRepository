@@ -5,9 +5,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 import 'package:repose_application/src/models/sitios_model.dart';
 import 'package:repose_application/src/utils/map_style.dart';
-
+import 'package:geolocator/geolocator.dart';
 class GeolocalizacionWidget extends StatefulWidget {
   const GeolocalizacionWidget({Key? key, required this.model})
       : super(key: key);
@@ -42,10 +43,7 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
     _sitios = widget.model;
   
   }
-  late final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(latitud  as double, longitud as double),
-    zoom: 14.4746,
-  );
+  
      late final CameraPosition _kLake = CameraPosition(
       bearing: 192.8334901395799,
       target: LatLng(latitud as double,  longitud as double),
@@ -64,12 +62,10 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
           _controller.complete(controller);
           controller.setMapStyle(mapStyle);
         },
-        
         mapType: MapType.normal,
         initialCameraPosition: _kLake,
         myLocationEnabled:true,
         myLocationButtonEnabled:true,
-        padding: EdgeInsets.only(top: 650.0,),
         markers:  <Marker>{
           _marker!
         },
@@ -95,6 +91,6 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
   Future<void> _goToTheLake() async {
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
-    
+  
   }
 }

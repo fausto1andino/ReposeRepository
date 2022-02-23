@@ -7,11 +7,12 @@ export interface sitios {
     nombre_sitio: String,
     urlImagen_sitio: String,
     lat: number,
-    long: number
+    long: number,
+    idvid: String
 }
 
 export function sitios(data :any, id?:string){
-    const { ciudad_sitio,costo_sitio,descripcion_sitio,nombre_sitio,urlImagen_sitio,lat,long } = data;
+    const { ciudad_sitio,costo_sitio,descripcion_sitio,nombre_sitio,urlImagen_sitio,lat,long,idvid } = data;
 
     let object :sitios = {
         idsitios: id, 
@@ -21,7 +22,8 @@ export function sitios(data :any, id?:string){
         nombre_sitio: nombre_sitio,
         urlImagen_sitio: urlImagen_sitio,
         lat: lat,
-        long: long
+        long: long,
+        idvid: idvid
     };
     return object;
 }

@@ -5,6 +5,7 @@ import 'package:repose_application/src/models/sitios_model.dart';
 import 'package:repose_application/src/widgets/geolocalizacion_widget.dart';
 
 import 'package:repose_application/src/widgets/sugerencia_list_widget.dart';
+import 'package:repose_application/src/widgets/youtube_widget.dart';
 
 class SitiosCard extends StatelessWidget {
   const SitiosCard({Key? key, required this.model}) : super(key: key);
@@ -71,6 +72,24 @@ class SitiosCard extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                          builder: (context) => GeolocalizacionWidget(model: model,)
+                                      ),
+                                    );
+                                  }),
+                            ),
+                             Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextButton(
+                                style: ButtonStyle( backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.black87)),
+                                  child: const Text(
+                                    'TRAILER',
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                         builder: (context) => YoutubeWiget(model: model,)
                                       ),
                                     );
                                   }),
