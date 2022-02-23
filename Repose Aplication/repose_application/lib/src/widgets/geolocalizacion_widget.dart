@@ -1,5 +1,7 @@
 // ignore_for_file: unused_local_variable
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
@@ -15,6 +17,9 @@ class GeolocalizacionWidget extends StatefulWidget {
 }
 
 class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
+
+    Completer<GoogleMapController> _controller = Completer();
+
   @override
   void initState() {
     super.initState();
@@ -30,7 +35,8 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
   late final nombresitios = widget.model.nombreSitio;
   late final descripcionsitios = widget.model.descripcionSitio;
 
-  GoogleMapController? mapController; //contrller for Google map
+
+  //GoogleMapController? mapController; //contrller for Google map
   PolylinePoints polylinePoints = PolylinePoints();
   String googleAPiKey = "AIzaSyBOE-SVm9xr0Xq_x8IPl4g0RYkCMhPaNac";
   Map<PolylineId, Polyline> polylines = {}; //polylines to show direction
@@ -43,6 +49,12 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
       snippet: descripcionsitios,
     ),
   );
+
+  late final CameraPosition _kLake = CameraPosition(
+      bearing: 192.8334901395799,
+      target: LatLng(latitud as double,  longitud as double),
+      tilt: 59.440717697143555,
+      zoom: 19.151926040649414);
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +94,7 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
             body: GoogleMap(
               zoomGesturesEnabled: true,
               initialCameraPosition: CameraPosition(
-                target: startLocation,
+                target: endLocation,
                 zoom: 16.0,
               ),
               markers: <Marker>{startLocationes!, endLocationes!},
@@ -90,11 +102,23 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
               myLocationEnabled: true,
               myLocationButtonEnabled: true,
               mapType: MapType.normal,
-              onMapCreated: (controller) {
-                setState(() {
-                  mapController = controller;
-                });
+              
+              onMapCreated: (GoogleMapController controller) {
+                _controller.complete(controller);
               },
+
+
+            ),
+            floatingActionButton: 
+            Padding(
+              padding: const EdgeInsets.only(right: 100.0, bottom: 100.0),
+              child: FloatingActionButton.extended(
+                onPressed: _goToTheLake,
+                label: const Text('Lugar Turistico'),
+                icon: const Icon(Icons.directions_car),
+              ),
+        
+        
             ),
           );
         });
@@ -138,4 +162,12 @@ class _GeolocalizacionWidgetState extends State<GeolocalizacionWidget> {
     }
     addPolyLine(polylineCoordinates);
   }
+
+  Future<void> _goToTheLake() async {
+    final GoogleMapController controller = await _controller.future;
+    controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+    
+  }
+
+
 }
