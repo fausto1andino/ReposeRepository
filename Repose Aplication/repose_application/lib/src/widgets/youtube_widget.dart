@@ -1,4 +1,3 @@
-
 // ignore_for_file: unused_field, unused_local_variable
 
 import 'package:flutter/material.dart';
@@ -6,17 +5,15 @@ import 'package:flutter/services.dart';
 import 'package:repose_application/src/models/sitios_model.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-
 class YoutubeWiget extends StatefulWidget {
-  const YoutubeWiget({Key? key, required this.model})
-      : super(key: key);
+  const YoutubeWiget({Key? key, required this.model}) : super(key: key);
   final Sitios model;
   @override
   _YoutubeWigetState createState() => _YoutubeWigetState();
 }
 
 class _YoutubeWigetState extends State<YoutubeWiget> {
-     @override
+  @override
   void initState() {
     Sitios _sitios;
     _sitios = widget.model;
@@ -34,7 +31,6 @@ class _YoutubeWigetState extends State<YoutubeWiget> {
         enableCaption: true,
       ),
     )..addListener(listener);
-   
   }
 
   late YoutubePlayerController _controller;
@@ -47,11 +43,9 @@ class _YoutubeWigetState extends State<YoutubeWiget> {
   bool _muted = false;
   bool _isPlayerReady = false;
 
-  late  List<String> _ids = [
+  late List<String> _ids = [
     urlvid,
   ];
-
-
 
   void listener() {
     if (_isPlayerReady && mounted && !_controller.value.isFullScreen) {
@@ -68,20 +62,14 @@ class _YoutubeWigetState extends State<YoutubeWiget> {
     super.deactivate();
   }
 
- 
-
   @override
   Widget build(BuildContext context) {
     return YoutubePlayerBuilder(
-      onExitFullScreen: () {
-        SystemChrome.setPreferredOrientations(DeviceOrientation.values);
-      },
       player: YoutubePlayer(
         controller: _controller,
         showVideoProgressIndicator: true,
         progressIndicatorColor: Colors.blueAccent,
         topActions: <Widget>[
-          const SizedBox(width: 8.0),
           Expanded(
             child: Text(
               _controller.metadata.title,
@@ -100,18 +88,19 @@ class _YoutubeWigetState extends State<YoutubeWiget> {
       ),
       builder: (context, player) => Scaffold(
         appBar: AppBar(
-          
-          title: const Text(
-            'Trailer',
+          title:  Text(
+            'Trailer ' + widget.model.nombreSitio.toString(),
             style: TextStyle(color: Colors.white),
           ),
-         
         ),
         body: ListView(
           children: [
-            player,
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(top: 150),
+              child: player,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 100),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -134,7 +123,8 @@ class _YoutubeWigetState extends State<YoutubeWiget> {
                             : null,
                       ),
                       IconButton(
-                        icon: Icon(_muted ? Icons.volume_off : Icons.volume_up),
+                        icon:
+                            Icon(_muted ? Icons.volume_off : Icons.volume_up),
                         onPressed: _isPlayerReady
                             ? () {
                                 _muted
